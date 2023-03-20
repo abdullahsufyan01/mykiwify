@@ -8,19 +8,19 @@ const logo = require("../../assets/kiwify-green-logo.2af0e50.png");
 const SignUp = () => {
   const formikk = useFormik({
     initialValues: {
-      e_mail: "",
+      email: "",
       confirm_email: "",
       pass_word: "",
       check_box: false,
     },
     validationSchema: Yup.object({
-      e_mail: Yup.string()
+      email: Yup.string()
         .email("Please enter a valid e-mail")
         .required("This field is mandatory"),
       confirm_email: Yup.string()
         .label("Repetir e-mail")
         .required("This field is mandatory")
-        .oneOf([Yup.ref("e_mail"), null], "The two emails must be the same."),
+        .oneOf([Yup.ref("email"), null], "The two emails must be the same."),
       pass_word: Yup.string().required("This field is mandatory"),
       check_box: Yup.bool().oneOf([true], "(This field is mandatory)"),
     }),
@@ -60,7 +60,7 @@ const SignUp = () => {
             >
               <div>
                 <label
-                  htmlFor=""
+                  htmlFor="email-address"
                   className="block text-sm font-medium leading-5 mb-1 text-gray-700"
                 >
                   E-mail
@@ -68,23 +68,24 @@ const SignUp = () => {
                 <div>
                   <input
                     type="email"
+                    htmlFor="email-address"
                     autoComplete="off"
-                    name="e_mail"
+                    name="email"
                     className={`form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-full ${
-                      formikk.touched.e_mail && formikk.errors.e_mail
+                      formikk.touched.email && formikk.errors.email
                         ? `border-red-500`
                         : `border-gray-300 `
                     }`}
                     onChange={formikk.handleChange}
-                    value={formikk.values.e_mail}
+                    value={formikk.values.email}
                     onBlur={formikk.handleBlur}
                   />
-                  {formikk.errors.e_mail && formikk.touched.e_mail && (
+                  {formikk.errors.email && formikk.touched.email && (
                     <div>
                       <div className="text-xs text-red-500 mt-1">
                         <font style={{ verticalAlign: "inherit" }}>
                           <font style={{ verticalAlign: "inherit" }}>
-                            {formikk.errors.e_mail}
+                            {formikk.errors.email}
                           </font>
                         </font>
                       </div>
